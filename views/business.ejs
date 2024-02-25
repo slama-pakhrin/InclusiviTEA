@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Demo</title>
+    <link rel="stylesheet" href="/output.css">
+    <style>
+        /* Your CSS styles here */
+        .narrow-column {
+            width: 5px;
+            text-align: end;
+        }
+/* Variable Declarations */
+:root {
+    --stars: 5;
+    --star-size: 20px;
+    --star-spacing: 1.5px;
+    --star-on-color: #F9DF4A;
+    --star-off-color: #CCCCCC;
+}
+
+/* Rating Styles */
+.rating {
+    display: inline-block; /* Make the rating stars horizontal */
+    padding: 10px; /* Adjust padding as needed */
+}
+
+/* Label Styles */
+.rating label {
+    display: inline-block; /* Make the stars display horizontally */
+    width: var(--star-size);
+    height: var(--star-size);
+    cursor: pointer;
+    transform: scaleX(-1); /* Reverse the direction of the stars */
+}
+
+.rating label:not(:first-of-type) {
+    margin-left: var(--star-spacing); /* Adjust spacing between stars */
+}
+
+.rating label:before {
+    content: "\2605";
+    font-size: var(--star-size);
+    color: var(--star-off-color);
+    line-height: 1;
+}
+
+/* Input Styles */
+.rating input {
+    display: none;
+}
+
+/* Interaction Styles */
+.rating input:checked ~ label:before,
+.rating input:not(:checked) + label:hover:before,
+.rating input:not(:checked) + label:hover ~ label:before {
+    color: var(--star-on-color);
+}
+#leaderboard{
+    margin-left: 1000px;
+    margin-top: -1050px;
+}
+    </style>
+</head>
+<body>
+    <img src="./close.png" alt="" style="position: fixed; height: 100%; width: 450vh;" height="100%" width="500px">
+    <br>
+    <div id="main" style="display: flex;">
+        <div id="first" style=" margin-left: 20px; padding: 30px;" >
+        
+            
+            <% if (dataArray && dataArray.length > 0) { %>
+            <table id="tableView"> 
+                <tbody>
+    
+                    <% 
+                    let foundValue = [];
+                    dataArray.forEach(row => {
+                        if (Object.values(row).some(value => typeof value === 'string' && value.toLowerCase().includes(saveSearch))) {
+                            foundValue.push(row);
+                        }
+            })
+                       
+                    
+                
+                    %>
+    <% foundValue.forEach(row => { %>
+    
+    
+                    <tr>
+                       
+                        <td>
+                            <div class="flex card w-96 bg-primary text-primary-content" style="background-color: rgb(73, 73, 73); color:aqua">
+                                <div class="card-body">
+                                  <h1 class="card-title"><%= row.name %></h1>
+                                        <p class="py-6"><%= row.address %></p>
+                                        <p class="py-6">
+                                            For African: <%= row.ethnics[0][0] %> <%= row.ethnics[0][1] %>                    
+                                            <div class="rating" name="rating1" id="rating1">
+                                                <input type="radio" id="star5" name="rating1" value="5" /><label for="star5"></label>
+                                                <input type="radio" id="star4" name="rating1" value="4" /><label for="star4"></label>
+                                                <input type="radio" id="star3" name="rating1" value="3" /><label for="star3"></label>
+                                                <input type="radio" id="star2" name="rating1" value="2" /><label for="star2"></label>
+                                                <input type="radio" id="star1" name="rating1" value="1" /><label for="star1"></label>
+                                            </div>
+                                        For Indigenous: <%= row.ethnics[1][0] %> <%= row.ethnics[1][1] %>
+                                        <div class="rating" name="rating2" id="rating2">
+                                            <input type="radio" id="star10" name="rating2" value="5" /><label for="star10"></label>
+                                            <input type="radio" id="star9" name="rating2" value="4" /><label for="star9"></label>
+                                            <input type="radio" id="star8" name="rating2" value="3" /><label for="star8"></label>
+                                            <input type="radio" id="star7" name="rating2" value="2" /><label for="star7"></label>
+                                            <input type="radio" id="star6" name="rating2" value="1" /><label for="star6"></label>
+                                        </div>
+                                       For LGBTQ: <%= row.ethnics[2][0] %> <%= row.ethnics[2][1] %>
+                                       <div class="rating" name="rating3" id="rating3">
+                                        <input type="radio" id="star15" name="rating3" value="5" /><label for="star15"></label>
+                                        <input type="radio" id="star14" name="rating3" value="4" /><label for="star14"></label>
+                                        <input type="radio" id="star13" name="rating3" value="3" /><label for="star13"></label>
+                                        <input type="radio" id="star12" name="rating3" value="2" /><label for="star12"></label>
+                                        <input type="radio" id="star11" name="rating3" value="1" /><label for="star11"></label>
+                                    </div></p>
+      
+                                    
+                                  <div class="card-actions justify-end">
+                                    <button class="btn btn-primary">Seems Lovely?</button>
+                                  </div>
+                                </div>
+                              </div>
+                        
+            
+                                
+                        </td>
+                        
+                    </tr>
+               <% }) %>
+                   
+                        
+            <% } %>
+                </tbody>
+            </table>
+    </div>
+    <div
+    class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-xl bg-clip-border" style="width: 600px; margin-left: 400px; margin-top: 100px; margin-right: 20px;" >
+    <table class="w-full text-left table-auto min-w-max" style="align-items: end; width: full; border: 2px solid black; ">
+      <thead>
+        <tr>
+            <h2 style="padding: 5px; text-align: center; background-color: rgb(152, 225, 201);">Ethnicity: Black</h2>
+          <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+              Name
+            </p>
+          </th>
+          <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+              Address
+            </p>
+          </th>
+          <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50" >
+            <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                Ratings
+            </p>
+          </th>
+          <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">Reviews</p>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <!-- <th>Black Community Leaderboard</th> -->
+          <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+              Canadian Tire
+            </p>
+          </td>
+          <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+              Dundas Street West
+            </p>
+          </td>
+          <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+              5
+            </p>
+          </td>
+          <td class="p-4 border-b border-blue-gray-50">
+            <a href="#" class="block font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">
+              4
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+             Winners
+            </p>
+          </td>
+          <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+              Yonge Street
+            </p>
+          </td>
+          <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+              2.8
+            </p>
+          </td>
+          <td class="p-4 border-b border-blue-gray-50">
+            <a href="#" class="block font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">
+              9
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+              One Plant
+            </p>
+          </td>
+          <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+              Augusta Avenue
+            </p>
+          </td>
+          <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+             4
+            </p>
+          </td>
+          <td class="p-4 border-b border-blue-gray-50">
+            <a href="#" class="block font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">
+              4
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                Carlaw Coffee & Convenience
+            </p>
+          </td>
+          <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                Carlaw Avenue
+            </p>
+          </td>
+          <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+              4.3
+            </p>
+          </td>
+          <td class="p-4 border-b border-blue-gray-50">
+            <a href="#" class="block font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">
+              7
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td class="p-4">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                Brown Sugar Delicacies
+            </p>
+          </td>
+          <td class="p-4">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                The Queensway
+            </p>
+          </td>
+          <td class="p-4">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                4
+            </p>
+          </td>
+          <td class="p-4">
+            <a href="#" class="block font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">
+              2
+            </a>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+  </div>
+  </div>
+    </div>
+    
+        <!-- <div id="leaderboard" style="background-color: red;"> -->
+     
+
+</body>
+</html>
